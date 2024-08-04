@@ -55,19 +55,20 @@ for i in range(0,len(link)):
     #rownum = 4
     
     for col in range(2,len(DataNeeded)):
-        section = (DataNeeded[col,0])
-        section = section.lower()
-        
-        if section == "quaterly results":
-            section = "quarters"
-        elif section == "profit & loss":
-            section = "profit-loss"
-        elif section == "balance sheet":
-            section = "balance-sheet"
-        elif section == "cash flow":
-            section = "cash-flows"
-        elif section == "shareholding pattern":
-            section = "shareholding"
+        # Create a dictionary with the mappings
+        section_mappings = {
+            "quaterly results": "quarters",
+            "profit & loss": "profit-loss",
+            "balance sheet": "balance-sheet",
+            "cash flow": "cash-flows",
+            "shareholding pattern": "shareholding"
+        }
+
+        # Convert the section to lowercase
+        section = DataNeeded[col, 0].lower()
+
+        # Get the relevant section from the dictionary, or keep the original section if not found
+        section = section_mappings.get(section, section)
         #print(section)
             
         if section == "ratios":
