@@ -64,7 +64,6 @@ This script scrapes financial data from [screener.in](https://www.screener.in) b
 - The script is designed to be easily modifiable. You can adjust the sections and data points to be scraped by updating the mappings and input columns.
 - Ensure that the structure of the input Excel file matches the expected format for the script to work correctly.
 
-Feel free to modify the script to suit your needs.
 ```
 
 This `README.md` provides a comprehensive overview of the script, including detailed explanations of the input file structure, script workflow, and error handling.
