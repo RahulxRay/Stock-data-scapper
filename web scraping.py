@@ -35,7 +35,13 @@ DateList = [x for x in DateList if str(x) != 'nan']
 
 wb = load_workbook(filename)
 ws=wb['New Output']
-
+section_mappings = {
+    "quaterly results": "quarters",
+    "profit & loss": "profit-loss",
+    "balance sheet": "balance-sheet",
+    "cash flow": "cash-flows",
+    "shareholding pattern": "shareholding"
+}
 for i in range(0,len(link)):
     url = link[i]
     print ("URL: "+ url)
@@ -55,15 +61,6 @@ for i in range(0,len(link)):
     #rownum = 4
     
     for col in range(2,len(DataNeeded)):
-        # Create a dictionary with the mappings
-        section_mappings = {
-            "quaterly results": "quarters",
-            "profit & loss": "profit-loss",
-            "balance sheet": "balance-sheet",
-            "cash flow": "cash-flows",
-            "shareholding pattern": "shareholding"
-        }
-
         # Convert the section to lowercase
         section = DataNeeded[col, 0].lower()
 
@@ -89,15 +86,24 @@ for i in range(0,len(link)):
             #print("CleanList: ", cleanlist)
         else:
             htmldata = soup.find('section', {'id':section})
-            DateB = str(htmldata.find("thead"))
-            cleanr = re.compile('<.*?>')
-            DateB = re.sub(cleanr, '', DateB)
-            DateB = DateB.split('\n')
-            DateBList = []
-            for date in DateB:
-              j = date.replace(' ','')
-              DateBList.append(j)
-            DateBList = list(filter(('').__ne__, DateBList))
+            if section == "shareholding":
+                yearly = htmldata.find('div', {'id': 'yearly-shp'})
+                yearly.decompose()
+                #print(htmldata)
+                thead = htmldata.find("thead")
+                th_elements = thead.find_all('th')
+                DateBList = [th.text for th in th_elements if th.text.strip()]
+                DateBList = [date.replace(" ", "") for date in DateBList]
+            else:
+                DateB = str(htmldata.find("thead"))
+                cleanr = re.compile('<.*?>')
+                DateB = re.sub(cleanr, '', DateB)
+                DateB = DateB.split('\n')
+                DateBList = []
+                for date in DateB:
+                    j = date.replace(' ','')
+                    DateBList.append(j)
+                DateBList = list(filter(('').__ne__, DateBList))
 
             htmldata = str(htmldata)
             #print(htmldata)
@@ -219,7 +225,7 @@ for i in range(0,len(link)):
                         
                         if len(FinalData) > l:
                             FinalData = FinalData[0:l]
-                        if '%' in FinalData[0]:
+                        if '%' in FinalData[0] or (len(FinalData) > 2 and"%" in FinalData[1]):
                             FinalData = [Data.replace("%", "") for Data in FinalData]
                         FinalData = [Data.replace(",", "") for Data in FinalData]
                         #print(FinalData)
