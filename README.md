@@ -1,57 +1,6 @@
-### Code
-```markdown
-# Web Scraping Script
 
-This script scrapes financial data from [screener.in](https://www.screener.in) based on inputs from an Excel file and writes the results back to the Excel file.
 
-## Prerequisites
-
-- Python 3.x
-- The following Python libraries:
-  - `requests`
-  - `urllib`
-  - `beautifulsoup4`
-  - `re`
-  - `pandas`
-  - `openpyxl`
-  - `numpy`
-
-## Installation
-
-1. Clone the repository or download the script.
-2. Install the required libraries using pip:
-   ```sh
-   pip install requests beautifulsoup4 pandas openpyxl numpy
-   ```
-
-## Usage
-
-1. Prepare an Excel file named `portfolio_Analysis.xlsx` with the following sheets:
-   - `Input`: Contains stock links and names.
-   - `Input Columns`: Contains the data needed for scraping.
-   - `New Output`: Contains the structure for the output data.
-
-2. Run the script:
-   ```sh
-   python web_scraping.py
-   ```
-
-3. The script will scrape the data from screener.in and write the results to the `New Output` sheet in the Excel file.
-
-## Additional Information
-
-- The script handles connection issues by retrying the request.
-- It uses BeautifulSoup to parse the HTML content and extract the required data.
-- The script maps specific sections to their corresponding IDs on the website for accurate data extraction.
-
-Feel free to modify the script to suit your needs.
-```
-
-This `README.md` provides a clear overview of the script, its prerequisites, installation steps, usage instructions, and additional information.
-
-RahulxRay: longer and details
-
-GitHub Copilot: ### Plan
+### Plan
 1. Create a `README.md` file.
 2. Add a title and detailed description.
 3. Include sections for prerequisites, installation, usage, detailed explanation of the script, and additional information.
