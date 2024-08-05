@@ -1,12 +1,5 @@
 
-
-### Plan
-1. Create a `README.md` file.
-2. Add a title and detailed description.
-3. Include sections for prerequisites, installation, usage, detailed explanation of the script, and additional information.
-
 ### Code
-```markdown
 # Web Scraping Script for Financial Data
 
 This script scrapes financial data from [screener.in](https://www.screener.in) based on inputs from an Excel file and writes the results back to the Excel file. It is designed to automate the process of gathering financial data for multiple stocks and compiling it into a structured format.
