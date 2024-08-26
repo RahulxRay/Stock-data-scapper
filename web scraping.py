@@ -89,11 +89,14 @@ for i in range(0,len(link)):
             if section == "shareholding":
                 yearly = htmldata.find('div', {'id': 'yearly-shp'})
                 yearly.decompose()
-                #print(htmldata)
-                thead = htmldata.find("thead")
-                th_elements = thead.find_all('th')
-                DateBList = [th.text for th in th_elements if th.text.strip()]
-                DateBList = [date.replace(" ", "") for date in DateBList]
+                # print(htmldata)
+                try:
+                    thead = htmldata.find("thead")
+                    th_elements = thead.find_all('th')
+                    DateBList = [th.text for th in th_elements if th.text.strip()]
+                    DateBList = [date.replace(" ", "") for date in DateBList]
+                except:
+                    DateBList = []
             else:
                 DateB = str(htmldata.find("thead"))
                 cleanr = re.compile('<.*?>')
